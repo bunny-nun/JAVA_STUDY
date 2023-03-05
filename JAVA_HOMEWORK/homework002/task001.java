@@ -60,12 +60,12 @@ public class task001 {
     }
 
     public static void clearFile(String fileName) {
+        String pathProject = System.getProperty("user.dir");
+        String pathFile = pathProject.concat(fileName);
         try {
-            String pathProject = System.getProperty("user.dir");
-            String pathFile = pathProject.concat(fileName);
             BufferedWriter writer = Files.newBufferedWriter(Path.of(pathFile), StandardOpenOption.TRUNCATE_EXISTING);
-            writer.flush();
-        } catch(Exception ex){
+            writer.close();
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
