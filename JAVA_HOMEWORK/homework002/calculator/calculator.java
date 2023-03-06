@@ -1,23 +1,27 @@
 package calculator;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class calculator {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Введите первое число: ");
-        double num01 = input.nextDouble();
+        float num01 = Float.parseFloat(input.nextLine().replace(",", "."));
         System.out.print("Введите операцию (+ - / *): ");
-        char operation = input.next().charAt(0);
+        char operation = input.nextLine().charAt(0);
         System.out.print("Введите второе число: ");
-        double num02 = input.nextDouble();
+        float num02 = Float.parseFloat(input.nextLine().replace(",", "."));
         input.close();
         System.out.println(calc(num01, num02, operation));
     }
-    public static String calc(double number01, double number02, char operation) {
-        double result = 0;
+
+    public static String calc(float number01, float number02, char operation) {
+        float result = 0;
         StringBuilder resString = new StringBuilder();
         String format;
+        NumberFormat numFormat = new DecimalFormat("#.######");
         if (operation == '+') {
             result = number01 + number02;
         } else if (operation == '-') {
@@ -30,30 +34,13 @@ public class calculator {
             resString.append("Операция недоступна\n");
         }
         if (operation == '+' || operation == '-' || operation == '*' || operation == '/') {
-            if (number01 % 1 == 0) {
-                resString.append((int) number01);
-            } else {
-                format = String.format("%.2f", number01);
-                resString.append(format);
-            }
-            resString.append(" ")
-                    .append(operation)
-                    .append(" ");
-            if (number02 % 1 == 0) {
-                resString.append((int) number02);
-            } else {
-                format = String.format("%.2f", number02);
-                resString.append(format);
-            }
-            resString.append(" = ");
-            if (result % 1 == 0) {
-                resString.append((int) result);
-            } else {
-                format = String.format("%.2f", result);
-                resString.append(format);
-            }
-            resString.append("\n");
+            resString.append(numFormat.format(number01))
+                    .append(" ").append(operation).append(" ")
+                    .append(numFormat.format(number02))
+                    .append(" = ")
+                    .append(numFormat.format(result))
+                    .append("\n");
         }
-    return resString.toString();
+        return resString.toString();
     }
 }

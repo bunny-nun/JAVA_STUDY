@@ -9,11 +9,11 @@ public class task003 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Введите первое число: ");
-        double num01 = input.nextDouble();
+        float num01 = Float.parseFloat(input.nextLine().replace(",", "."));
         System.out.print("Введите операцию (+ - / *): ");
-        char operation = input.next().charAt(0);
+        char operation = input.nextLine().charAt(0);
         System.out.print("Введите второе число: ");
-        double num02 = input.nextDouble();
+        float num02 = Float.parseFloat(input.nextLine().replace(",", "."));
         input.close();
         System.out.println(calculator.calc(num01, num02, operation));
         logging(calculator.calc(num01, num02, operation));
