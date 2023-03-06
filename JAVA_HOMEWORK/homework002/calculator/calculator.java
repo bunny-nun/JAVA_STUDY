@@ -20,7 +20,6 @@ public class calculator {
     public static String calc(float number01, float number02, char operation) {
         float result = 0;
         StringBuilder resString = new StringBuilder();
-        String format;
         NumberFormat numFormat = new DecimalFormat("#.######");
         if (operation == '+') {
             result = number01 + number02;
